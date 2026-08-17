@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDisplayName</key>
+	<string>CosmoKit Test</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>apps.mjkweber.CosmoKitTestApp</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>cosmokittestapp</string>
+			</array>
+		</dict>
+	</array>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>NSCalendarsFullAccessUsageDescription</key>
+	<string>Used to test CosmoKit's permission grant and revoke.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Used to test CosmoKit's permission grant and revoke.</string>
+	<key>NSContactsUsageDescription</key>
+	<string>Used to test CosmoKit's permission grant and revoke.</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Used to test CosmoKit's Face ID simulation.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>CosmoKit Test App shows simulator location changes on the map.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Used to test CosmoKit's permission grant and revoke.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Used to test CosmoKit's permission grant and revoke.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Used to test CosmoKit's permission grant and revoke.</string>
+	<key>NSRemindersFullAccessUsageDescription</key>
+	<string>Used to test CosmoKit's permission grant and revoke.</string>
+	<key>UIApplicationSceneManifest</key>
+	<dict>
+		<key>UIApplicationSupportsMultipleScenes</key>
+		<false/>
+		<key>UISceneConfigurations</key>
+		<dict/>
+	</dict>
+	<key>UIApplicationSupportsIndirectInputEvents</key>
+	<true/>
+	<key>UILaunchScreen</key>
+	<dict/>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+	</array>
+</dict>
+</plist>

@@ -1,0 +1,20 @@
+name: CosmoKitTestApp
+options:
+  minimumXcodeGenVersion: 2.45.0
+settings:
+  base:
+    DEVELOPMENT_TEAM: XR6J92U4RD
+    SWIFT_VERSION: 5.0
+targets:
+  CosmoKitTestApp:
+    type: application
+    platform: iOS
+    deploymentTarget: "17.0"
+    sources:
+      - path: CosmoKitTestApp
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: apps.mjkweber.CosmoKitTestApp
+        PRODUCT_NAME: CosmoKitTestApp
+        GENERATE_INFOPLIST_FILE: NO
+        INFOPLIST_FILE: CosmoKitTestApp/Info.plist
