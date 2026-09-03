@@ -11,11 +11,13 @@
 		CC114CD78C26EC5B8383B397 /* ToolCoverage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6FDE56382FB5359A794CDC /* ToolCoverage.swift */; };
 		DC9E09B83F5D7C132D580AC6 /* CosmoKitTestAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B879740D861791093BA0266A /* CosmoKitTestAppApp.swift */; };
 		E3CA6EB3992F7EB272B4EFD5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8259ADE8F40958626D6707B /* ContentView.swift */; };
+		EF8582E8228C31145272D73E /* Receipts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5BC8E1094CA7A6B67259E5 /* Receipts.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		19E58594DDF5D4553445A931 /* ToolCoverageCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolCoverageCards.swift; sourceTree = "<group>"; };
 		3C6FDE56382FB5359A794CDC /* ToolCoverage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolCoverage.swift; sourceTree = "<group>"; };
+		3D5BC8E1094CA7A6B67259E5 /* Receipts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Receipts.swift; sourceTree = "<group>"; };
 		5F645366080EDCBCD8C8FE07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		81EA879D811B2E4589B3BB8C /* CosmoKitTestApp.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = CosmoKitTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B879740D861791093BA0266A /* CosmoKitTestAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CosmoKitTestAppApp.swift; sourceTree = "<group>"; };
@@ -29,6 +31,7 @@
 				C8259ADE8F40958626D6707B /* ContentView.swift */,
 				B879740D861791093BA0266A /* CosmoKitTestAppApp.swift */,
 				5F645366080EDCBCD8C8FE07 /* Info.plist */,
+				3D5BC8E1094CA7A6B67259E5 /* Receipts.swift */,
 				3C6FDE56382FB5359A794CDC /* ToolCoverage.swift */,
 				19E58594DDF5D4553445A931 /* ToolCoverageCards.swift */,
 			);
@@ -111,6 +114,7 @@
 			files = (
 				E3CA6EB3992F7EB272B4EFD5 /* ContentView.swift in Sources */,
 				DC9E09B83F5D7C132D580AC6 /* CosmoKitTestAppApp.swift in Sources */,
+				EF8582E8228C31145272D73E /* Receipts.swift in Sources */,
 				CC114CD78C26EC5B8383B397 /* ToolCoverage.swift in Sources */,
 				5810314514D963F89A4B5104 /* ToolCoverageCards.swift in Sources */,
 			);

@@ -41,11 +41,16 @@ struct ContentView: View {
         .onAppear {
             locationProvider.start()
         }
+        .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
+            Receipts.activation()
+        }
         .onOpenURL { url in
             deepLinkURL = url
+            Receipts.deepLink(url.absoluteString)
         }
         .onReceive(locationProvider.$currentCoordinate.compactMap { $0 }) { coordinate in
             mapPosition = .region(.init(center: coordinate, span: .defaultSpan))
+            Receipts.location(latitude: coordinate.latitude, longitude: coordinate.longitude)
         }
         .onReceive(NotificationCenter.default.publisher(for: .cosmoKitPushReceived)) { notification in
             let userInfo = notification.userInfo ?? [:]

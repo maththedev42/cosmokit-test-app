@@ -92,26 +92,30 @@ final class PermissionProbe: ObservableObject {
     @Published var biometrics = "not attempted"
 
     func refresh() {
-        camera = Self.describe(AVCaptureDevice.authorizationStatus(for: .video))
-        microphone = Self.describe(AVCaptureDevice.authorizationStatus(for: .audio))
+        update(&camera, service: "camera", status: Self.describe(AVCaptureDevice.authorizationStatus(for: .video)))
+        update(&microphone, service: "microphone", status: Self.describe(AVCaptureDevice.authorizationStatus(for: .audio)))
 
+        let photosStatus: String
         switch PHPhotoLibrary.authorizationStatus(for: .readWrite) {
-        case .authorized: photos = "authorized"
-        case .limited: photos = "limited"
-        case .denied: photos = "denied"
-        case .restricted: photos = "restricted"
-        case .notDetermined: photos = "not determined"
-        @unknown default: photos = "unknown"
+        case .authorized: photosStatus = "authorized"
+        case .limited: photosStatus = "limited"
+        case .denied: photosStatus = "denied"
+        case .restricted: photosStatus = "restricted"
+        case .notDetermined: photosStatus = "not determined"
+        @unknown default: photosStatus = "unknown"
         }
+        update(&photos, service: "photos", status: photosStatus)
 
+        let contactsStatus: String
         switch CNContactStore.authorizationStatus(for: .contacts) {
-        case .authorized: contacts = "authorized"
-        case .limited: contacts = "limited"
-        case .denied: contacts = "denied"
-        case .restricted: contacts = "restricted"
-        case .notDetermined: contacts = "not determined"
-        @unknown default: contacts = "unknown"
+        case .authorized: contactsStatus = "authorized"
+        case .limited: contactsStatus = "limited"
+        case .denied: contactsStatus = "denied"
+        case .restricted: contactsStatus = "restricted"
+        case .notDetermined: contactsStatus = "not determined"
+        @unknown default: contactsStatus = "unknown"
         }
+        update(&contacts, service: "contacts", status: contactsStatus)
 
         UNUserNotificationCenter.current().getNotificationSettings { settings in
             let text: String
@@ -123,7 +127,19 @@ final class PermissionProbe: ObservableObject {
             case .ephemeral: text = "ephemeral"
             @unknown default: text = "unknown"
             }
-            Task { @MainActor in self.notifications = text }
+            Task { @MainActor in
+                self.update(&self.notifications, service: "notifications", status: text)
+            }
+        }
+    }
+
+    /// E2E-03a: write a receipt whenever a status actually changes, so the
+    /// permission tool's effect is readable from outside the simulator.
+    private func update(_ slot: inout String, service: String, status: String) {
+        let changed = slot != status
+        slot = status
+        if changed {
+            Receipts.permission(service: service, status: status)
         }
     }
 
