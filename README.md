@@ -46,3 +46,31 @@ The Xcode project is generated with [XcodeGen](https://github.com/yonaskolb/Xcod
 ```
 xcodegen generate
 ```
+
+## Diagnostics playground (TA-01)
+
+A dedicated card demonstrating each of CosmoKit's 11 diagnostic switches. Buttons commit the specific violation caught or configured by that switch.
+
+| Diagnostic Switch | Button Accessibility ID | Action / Expected Signal |
+|---|---|---|
+| `zombies` | `diag.zombies` | Sends a message to a deallocated instance. Aborts with `message sent to deallocated instance`. |
+| `mallocStackLogging` | `diag.mallocStackLogging` | Allocates 256KB block with tagged byte signature. Visible in malloc stack logs / CosmoKit log stream. |
+| `mallocScribble` | `diag.mallocScribble` | Inspects freed memory. Displays `0x55555555` pattern in UI when scribble is enabled, or writes past buffer to trigger guard page abort. |
+| `mainThreadChecker` | `diag.mainThreadChecker` | Calls UIKit `text` setter from a background thread. Triggers Main Thread Checker violation in logs. |
+| `coreDataSQL` | `diag.coreDataSQL` | Inserts and fetches records via Core Data. Emits verbose `CoreData: sql` statements to log stream. |
+| `coreDataConcurrency` | `diag.coreDataConcurrency` | Mutates a NSManagedObjectContext from the wrong background thread. Aborts with `Multithreading_Violation`. |
+| `layoutFeedback` | `diag.layoutFeedback` | Toggles subview layout inside `layoutSubviews()`. Aborts with `LayoutFeedbackLoop` exception. |
+| `nonLocalizedStrings` | `diag.nonLocalizedStrings` | Renders unlocalized string. Rendered in UPPERCASE in UI when switch is enabled. |
+| `doubleLocalizedStrings` | `diag.doubleLocalizedStrings` | Renders localized string. Rendered doubled (e.g. `[Sample text Sample text]`) when switch is enabled. |
+| `quietLog` | `diag.quietLog` | Emits info/debug os_log messages. Suppressed or redirected when quiet logging is active. |
+| `cfNetwork` | `diag.cfNetwork` | Issues an HTTP GET request to `httpbin.org/get`. Emits verbose CFNetwork diagnostic logging. |
+
+### Confirmation for Crashing Switches
+
+Buttons that cause purposeful application crashes (`zombies`, `mallocScribble`, `coreDataConcurrency`, and `layoutFeedback`) require a double-tap confirmation within 2 seconds. The first tap prompts "Tap again to crash", and a second tap within 2 seconds executes the crashing code.
+
+### Launch Arguments
+
+- `--hide-diagnostics-playground`: Completely hides the Diagnostics playground card from the view hierarchy.
+- `--reset-receipts`: Clears all `receipt.*` keys from User Defaults before the UI initializes.
+

@@ -30,6 +30,7 @@ struct ContentView: View {
                     EnvironmentCard()
                     DefaultsCard()
                     AppDataCard()
+                    DiagnosticsCard()
                 }
                 .padding(.horizontal, 22)
                 .padding(.top, -22)
@@ -47,6 +48,7 @@ struct ContentView: View {
         .onOpenURL { url in
             deepLinkURL = url
             Receipts.deepLink(url.absoluteString)
+            _ = DiagnosticsPlayground.handleDeepLink(url: url)
         }
         .onReceive(locationProvider.$currentCoordinate.compactMap { $0 }) { coordinate in
             mapPosition = .region(.init(center: coordinate, span: .defaultSpan))

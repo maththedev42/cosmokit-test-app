@@ -8,9 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		5810314514D963F89A4B5104 /* ToolCoverageCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E58594DDF5D4553445A931 /* ToolCoverageCards.swift */; };
+		CA64429D3553C842D0651AA3 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869582CBCD882CF870DD267F /* CoreDataStack.swift */; };
 		CC114CD78C26EC5B8383B397 /* ToolCoverage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6FDE56382FB5359A794CDC /* ToolCoverage.swift */; };
 		DC9E09B83F5D7C132D580AC6 /* CosmoKitTestAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B879740D861791093BA0266A /* CosmoKitTestAppApp.swift */; };
+		DE7C00F30327A948C3E84A45 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 68F1183B780521A16F5F9F4C /* Localizable.strings */; };
 		E3CA6EB3992F7EB272B4EFD5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8259ADE8F40958626D6707B /* ContentView.swift */; };
+		EB651B4D416A0FBB71F42CDE /* DiagnosticsPlayground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527F2950F7610D800E587A84 /* DiagnosticsPlayground.swift */; };
 		EF8582E8228C31145272D73E /* Receipts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5BC8E1094CA7A6B67259E5 /* Receipts.swift */; };
 /* End PBXBuildFile section */
 
@@ -18,8 +21,12 @@
 		19E58594DDF5D4553445A931 /* ToolCoverageCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolCoverageCards.swift; sourceTree = "<group>"; };
 		3C6FDE56382FB5359A794CDC /* ToolCoverage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolCoverage.swift; sourceTree = "<group>"; };
 		3D5BC8E1094CA7A6B67259E5 /* Receipts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Receipts.swift; sourceTree = "<group>"; };
+		4347AE624C6742AFC6E989AC /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		527F2950F7610D800E587A84 /* DiagnosticsPlayground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosticsPlayground.swift; sourceTree = "<group>"; };
 		5F645366080EDCBCD8C8FE07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		627241D56004A9627AC199B9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		81EA879D811B2E4589B3BB8C /* CosmoKitTestApp.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = CosmoKitTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		869582CBCD882CF870DD267F /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		B879740D861791093BA0266A /* CosmoKitTestAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CosmoKitTestAppApp.swift; sourceTree = "<group>"; };
 		C8259ADE8F40958626D6707B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -29,11 +36,14 @@
 			isa = PBXGroup;
 			children = (
 				C8259ADE8F40958626D6707B /* ContentView.swift */,
+				869582CBCD882CF870DD267F /* CoreDataStack.swift */,
 				B879740D861791093BA0266A /* CosmoKitTestAppApp.swift */,
+				527F2950F7610D800E587A84 /* DiagnosticsPlayground.swift */,
 				5F645366080EDCBCD8C8FE07 /* Info.plist */,
 				3D5BC8E1094CA7A6B67259E5 /* Receipts.swift */,
 				3C6FDE56382FB5359A794CDC /* ToolCoverage.swift */,
 				19E58594DDF5D4553445A931 /* ToolCoverageCards.swift */,
+				68F1183B780521A16F5F9F4C /* Localizable.strings */,
 			);
 			path = CosmoKitTestApp;
 			sourceTree = "<group>";
@@ -62,6 +72,7 @@
 			buildConfigurationList = 4D983B65FE8F87A3E98E17AE /* Build configuration list for PBXNativeTarget "CosmoKitTestApp" */;
 			buildPhases = (
 				02C1DE37886FF76843600CA4 /* Sources */,
+				1F76E8FAA82AA998EB10CCD7 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -94,6 +105,7 @@
 			knownRegions = (
 				Base,
 				en,
+				"pt-BR",
 			);
 			mainGroup = EA9F9B851D8652E4C0D341C6;
 			minimizedProjectReferenceProxies = 1;
@@ -107,13 +119,26 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		1F76E8FAA82AA998EB10CCD7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DE7C00F30327A948C3E84A45 /* Localizable.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		02C1DE37886FF76843600CA4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				E3CA6EB3992F7EB272B4EFD5 /* ContentView.swift in Sources */,
+				CA64429D3553C842D0651AA3 /* CoreDataStack.swift in Sources */,
 				DC9E09B83F5D7C132D580AC6 /* CosmoKitTestAppApp.swift in Sources */,
+				EB651B4D416A0FBB71F42CDE /* DiagnosticsPlayground.swift in Sources */,
 				EF8582E8228C31145272D73E /* Receipts.swift in Sources */,
 				CC114CD78C26EC5B8383B397 /* ToolCoverage.swift in Sources */,
 				5810314514D963F89A4B5104 /* ToolCoverageCards.swift in Sources */,
@@ -121,6 +146,18 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		68F1183B780521A16F5F9F4C /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				627241D56004A9627AC199B9 /* en */,
+				4347AE624C6742AFC6E989AC /* pt-BR */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		2A6C6F065AC8D40E74C4D732 /* Release */ = {

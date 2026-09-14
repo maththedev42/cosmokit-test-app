@@ -27,6 +27,13 @@ final class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCent
         // notification authorization — request it on first launch so the
         // CosmoKit push tool can be tested end to end.
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { _, _ in }
+        if let idx = ProcessInfo.processInfo.arguments.firstIndex(of: "--trigger-diagnostic"),
+           idx + 1 < ProcessInfo.processInfo.arguments.count {
+            let key = ProcessInfo.processInfo.arguments[idx + 1]
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                DiagnosticsPlayground.execute(key: key)
+            }
+        }
         return true
     }
 
