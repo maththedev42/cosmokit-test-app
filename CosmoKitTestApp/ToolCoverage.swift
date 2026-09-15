@@ -28,6 +28,8 @@ enum TestLog {
     static let general = Logger(subsystem: subsystem, category: "general")
     static let network = Logger(subsystem: subsystem, category: "network")
     static let lifecycle = Logger(subsystem: subsystem, category: "lifecycle")
+    /// Playground markers (`[CosmoKit:diag:<key>]`), read by CosmoKit's Log Stream.
+    static let diagnostics = Logger(subsystem: subsystem, category: "diagnostics")
 }
 
 @MainActor

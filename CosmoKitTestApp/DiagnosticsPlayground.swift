@@ -9,6 +9,7 @@
 import SwiftUI
 import UIKit
 import OSLog
+import Foundation
 
 // MARK: - Helper Targets
 
@@ -117,8 +118,22 @@ enum DiagnosticsPlayground {
 
     static func execute(key: String) {
         Receipts.record(kind: "diagnostic.\(key)", payload: ["triggered": true, "expect": expectValue(for: key)])
+
+        // A CosmoKit marker on both sinks before the switch, so a
+        // triggered-but-silent switch still gets a colored line in the Log
+        // Stream regardless of Quiet.
+        let marker = "[CosmoKit:diag:\(key)] triggered at \(ISO8601DateFormatter().string(from: Date())) — expect: \(expectValue(for: key))"
+        FileHandle.standardError.write(Data((marker + "\n").utf8))
+        TestLog.diagnostics.notice("\(marker, privacy: .public)")
+
         switch key {
         case "zombies":
+            // Name the cause immediately before the abort, in case the
+            // runtime's own "message sent to deallocated instance" line is cut
+            // off by the crash.
+            let cause = "[CosmoKit:diag:zombies] sending message to a deallocated ZombieProbeTarget — abort expected"
+            FileHandle.standardError.write(Data((cause + "\n").utf8))
+            TestLog.diagnostics.notice("\(cause, privacy: .public)")
             var probe: ZombieProbeTarget? = ZombieProbeTarget()
             let unmanaged = Unmanaged.passUnretained(probe!)
             probe = nil

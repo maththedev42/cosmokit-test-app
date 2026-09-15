@@ -65,6 +65,40 @@ A dedicated card demonstrating each of CosmoKit's 11 diagnostic switches. Button
 | `quietLog` | `diag.quietLog` | Emits info/debug os_log messages. Suppressed or redirected when quiet logging is active. |
 | `cfNetwork` | `diag.cfNetwork` | Issues an HTTP GET request to `httpbin.org/get`. Emits verbose CFNetwork diagnostic logging. |
 
+### CosmoKit markers and line colors
+
+Every `execute(key:)` writes a marker to stderr and to the `diagnostics` os_log
+category before the switch fires:
+
+```
+[CosmoKit:diag:<key>] triggered at <ISO8601> — expect: <value>
+```
+
+CosmoKit's Log Stream classifies each line (off the main thread) against a
+per-switch signature plus that marker, so a triggered-but-silent switch
+(`nonLocalizedStrings`, `doubleLocalizedStrings`, `quietLog`) still gets a
+colored line. `zombies` also writes a "sending message to a deallocated
+ZombieProbeTarget — abort expected" marker immediately before the abort, in
+case the runtime's own line is cut off.
+
+Line colors (leading bar + `[Tag]`), one per switch:
+
+| Switch | Hex |
+|---|---|
+| `zombies` | `#B57BFF` |
+| `mallocStackLogging` | `#2FB8A6` |
+| `mallocScribble` | `#FF6FA5` |
+| `mainThreadChecker` | `#FF9F43` |
+| `coreDataSQL` | `#4C9AFF` |
+| `coreDataConcurrency` | `#7C6CFF` |
+| `layoutFeedback` | `#F2C94C` |
+| `nonLocalizedStrings` | `#6FCF97` |
+| `doubleLocalizedStrings` | `#C49A6C` |
+| `quietLog` | `#9AA4B2` |
+| `cfNetwork` | `#38C7E6` |
+
+Crash lines no switch claims use the system red.
+
 ### Confirmation for Crashing Switches
 
 Buttons that cause purposeful application crashes (`zombies`, `mallocScribble`, `coreDataConcurrency`, and `layoutFeedback`) require a double-tap confirmation within 2 seconds. The first tap prompts "Tap again to crash", and a second tap within 2 seconds executes the crashing code.
