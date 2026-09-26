@@ -26,7 +26,13 @@ final class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCent
         // simctl push only renders a banner if the app has been granted
         // notification authorization — request it on first launch so the
         // CosmoKit push tool can be tested end to end.
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { _, _ in }
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, _ in
+            if granted {
+                DispatchQueue.main.async {
+                    application.registerForRemoteNotifications()
+                }
+            }
+        }
         if let idx = ProcessInfo.processInfo.arguments.firstIndex(of: "--trigger-diagnostic"),
            idx + 1 < ProcessInfo.processInfo.arguments.count {
             let key = ProcessInfo.processInfo.arguments[idx + 1]
@@ -35,6 +41,17 @@ final class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCent
             }
         }
         return true
+    }
+
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
+        TestLog.lifecycle.notice("APNs Device Token: \(token, privacy: .public)")
+        print("APNs Device Token: \(token)")
+    }
+
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        TestLog.lifecycle.error("Failed to register for remote notifications: \(error.localizedDescription, privacy: .public)")
+        print("Failed to register for remote notifications: \(error.localizedDescription)")
     }
 
     func userNotificationCenter(
