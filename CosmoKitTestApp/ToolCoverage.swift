@@ -146,22 +146,27 @@ final class PermissionProbe: ObservableObject {
     }
 
     func requestCamera() {
+        guard !E2E.isActive else { return }
         AVCaptureDevice.requestAccess(for: .video) { _ in Task { @MainActor in self.refresh() } }
     }
 
     func requestMicrophone() {
+        guard !E2E.isActive else { return }
         AVCaptureDevice.requestAccess(for: .audio) { _ in Task { @MainActor in self.refresh() } }
     }
 
     func requestPhotos() {
+        guard !E2E.isActive else { return }
         PHPhotoLibrary.requestAuthorization(for: .readWrite) { _ in Task { @MainActor in self.refresh() } }
     }
 
     func requestContacts() {
+        guard !E2E.isActive else { return }
         CNContactStore().requestAccess(for: .contacts) { _, _ in Task { @MainActor in self.refresh() } }
     }
 
     func requestNotifications() {
+        guard !E2E.isActive else { return }
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { _, _ in
             Task { @MainActor in self.refresh() }
         }

@@ -27,7 +27,7 @@ final class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCent
         // notification authorization — request it on first launch so the
         // CosmoKit push tool can be tested end to end, but skip under --e2e
         // so modal SpringBoard alerts do not stall headless test runs.
-        if !ProcessInfo.processInfo.arguments.contains("--e2e") {
+        if !E2E.isActive {
             UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, _ in
                 if granted {
                     DispatchQueue.main.async {

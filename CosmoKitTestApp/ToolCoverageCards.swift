@@ -46,7 +46,7 @@ struct PermissionsCard: View {
                     toolButton("Microphone", tint: .orange) { probe.requestMicrophone() }
                     toolButton("Photos", tint: .pink) { probe.requestPhotos() }
                     toolButton("Contacts", tint: .green) { probe.requestContacts() }
-                    toolButton("Notifications", tint: .purple) { probe.requestNotifications() }
+                    toolButton(E2E.isActive ? "disabled under E2E" : "Notifications", tint: E2E.isActive ? .gray : .purple) { probe.requestNotifications() }
                     toolButton("Face ID", tint: .indigo) { probe.authenticate() }
                 }
 

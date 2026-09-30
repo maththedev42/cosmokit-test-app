@@ -18,6 +18,13 @@
 import Foundation
 import OSLog
 
+enum E2E {
+    static var isActive: Bool {
+        ProcessInfo.processInfo.arguments.contains("--e2e") ||
+        ProcessInfo.processInfo.environment["COSMOKIT_E2E"] == "1"
+    }
+}
+
 enum Receipts {
     static let prefix = "receipt."
 
