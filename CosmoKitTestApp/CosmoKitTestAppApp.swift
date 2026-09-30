@@ -25,11 +25,14 @@ final class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCent
         TestLog.lifecycle.notice("CosmoKitTestApp launched, subsystem \(TestLog.subsystem, privacy: .public)")
         // simctl push only renders a banner if the app has been granted
         // notification authorization — request it on first launch so the
-        // CosmoKit push tool can be tested end to end.
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, _ in
-            if granted {
-                DispatchQueue.main.async {
-                    application.registerForRemoteNotifications()
+        // CosmoKit push tool can be tested end to end, but skip under --e2e
+        // so modal SpringBoard alerts do not stall headless test runs.
+        if !ProcessInfo.processInfo.arguments.contains("--e2e") {
+            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, _ in
+                if granted {
+                    DispatchQueue.main.async {
+                        application.registerForRemoteNotifications()
+                    }
                 }
             }
         }
