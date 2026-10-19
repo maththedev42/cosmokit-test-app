@@ -30,6 +30,31 @@ enum TestLog {
     static let lifecycle = Logger(subsystem: subsystem, category: "lifecycle")
     /// Playground markers (`[CosmoKit:diag:<key>]`), read by CosmoKit's Log Stream.
     static let diagnostics = Logger(subsystem: subsystem, category: "diagnostics")
+
+    @discardableResult
+    static func handleLogDeepLink(url: URL) -> Bool {
+        guard url.scheme == "cosmokittestapp" else { return false }
+        var token: String? = nil
+        if url.host == "log" {
+            let pathToken = url.path.trimmingCharacters(in: CharacterSet(charactersIn: "/"))
+            if !pathToken.isEmpty {
+                token = pathToken
+            } else if let query = URLComponents(url: url, resolvingAgainstBaseURL: false)?.queryItems?.first(where: { $0.name == "token" })?.value {
+                token = query
+            }
+        } else if url.path.hasPrefix("/log/") {
+            token = String(url.path.dropFirst(5))
+        }
+
+        guard let token, !token.isEmpty else { return false }
+
+        // Log with Logger(subsystem: bundleID)
+        general.notice("\(token, privacy: .public)")
+        // Log with print (stdout) and NSLog (process name)
+        print(token)
+        NSLog("%@", token)
+        return true
+    }
 }
 
 @MainActor

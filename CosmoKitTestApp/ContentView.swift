@@ -48,6 +48,7 @@ struct ContentView: View {
         .onOpenURL { url in
             deepLinkURL = url
             Receipts.deepLink(url.absoluteString)
+            _ = TestLog.handleLogDeepLink(url: url)
             _ = DiagnosticsPlayground.handleDeepLink(url: url)
         }
         .onReceive(locationProvider.$currentCoordinate.compactMap { $0 }) { coordinate in
